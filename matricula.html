@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/form.css">
+<script>
+    function values(){
+      var unidade = document.getElementById('unidade').value;
+      var nome = document.getElementById('name').value;
+      var cpf = document.getElementById('cpf').value;
+      var datadenascimento = document.getElementById('datadenascimento').value;
+      var endereco = document.getElementById('endereco').value;
+      var telefonedoaluno = document.getElementById('telefonedoaluno').value;
+      var emaildoaluno = document.getElementById('emaildoaluno').value;
+      var serie = document.getElementById('serie').value;
+      var periodo = document.getElementById('periodo').value;
+      var responsavel = document.getElementById('responsavel').value;
+      var cpf2 = document.getElementById('cpf2').value;
+      var datadenascimento2 = document.getElementById('datadenascimento2').value;
+      var endereco2 = document.getElementById('endereco2').value;
+      var telefone2 = document.getElementById('telefone2').value;
+      var email2 = document.getElementById('email2').value;
+      var profissao = document.getElementById('profissao').value;
+      var ocontato = document.getElementById('ocontato').value;
+      data = {
+        unidade:unidade,
+        nome:nome,
+        cpf:cpf,
+        datadenascimento:datadenascimento,
+        endereco:endereco,
+        telefonedoaluno:telefonedoaluno,
+        emaildoaluno:emaildoaluno,
+        serie:serie,
+        periodo:periodo,
+        responsavel:responsavel,
+        cpf2:cpf2,
+        datadenascimento2:datadenascimento2,
+        endereco2:endereco2,
+        telefone2:telefone2,
+        email2:email2,
+        profissao:profissao,
+        ocontato:ocontato};
+      return data
+    }
+  async function register(){
+    console.log('register is being made')
+    const reg = await fetch('http://localhost:3000/matriculate', {
+      method:'POST',
+      headers:{
+          'Content-type':'application/json',
+      },
+      body:JSON.stringify({values:values()})
+    }).then(response => {
+      if(!response.ok){
+        throw new Error('Network connection was not ok')
+      }
+      return response.json()
+    }).then(response =>{
+      console.log('message',response.message)
+      if(response.message =='success'){
+        alert('Sua pré matrícula foi registrada com sucesso')
+        window.location = 'index.html'
+      }
+    })
+  }
+</script>
+<body>
+<form id = "myform" onsubmit="register()">
+<div class="area" >
+  <header> </header>
+  <div id=blocks>
+  <div id="aluno">
+  <spam class="title">Dados do(a) aluno(a)</spam><br><spam></spam><br><spam></spam><br>
+    <label class="lab" for="funidade">Unidade:</label><br>
+    <div class="box">
+      <select class="sel" id="unidade" name="funidade" required>
+        <option value=""></option>
+        <option value="ilicinea">Ilicínea</option>
+        <option value="guape">Guapé</option>
+      </select>
+    </div>
+    
+
+    <label class="lab" for="fname">Nome:</label><br>
+    <input class="inp" type="text" id="name" name="fname" required><br>
+
+    <label class="lab" for="cpf">CPF (do aluno ou responsável):</label><br>
+    <input class="inp" type="text" id="cpf" name="cpf" required><br>
+
+    <label class="lab" for="datadenascimento">Data de nascimento:</label><br>
+    <input class="inp" type="date" id="datadenascimento" name="datadenascimento" required><br>
+
+    <label class="lab" for="endereco">Endereço:</label><br>
+    <input class="inp" type="text" id="endereco" name="endereco" placeholder="Incluir nome do bairro" required><br>
+
+    <label class="lab" for="telefonedoaluno">Telefone do aluno (incluir DDD):</label><br>
+    <input class="inp" type="tel" id="telefonedoaluno" placeholder="Ex: 31 9 0000 0000" name="telefonedoaluno" required><br>
+
+    <label class="lab" for="emaildoaluno">E-mail do aluno:</label><br>
+    <input class="inp" type="email" id="emaildoaluno" name="emaildoaluno" required><br>
+
+    <label class="lab" for="serie">Ano escolar em 2024:</label><br>
+    <div class="box">
+      <select class="sel" id="serie" name="serie" required>
+      <option value=""></option>
+      <option value="0">Jardim</option>
+      <option value="1">1º</option>
+      <option value="2">2º</option>
+      <option value="3">3º</option>
+      <option value="4">4º</option>
+      <option value="5">5º</option>
+      <option value="6">6º</option>
+      <option value="7">7º</option>
+      <option value="8">8º</option>
+      <option value="9">9º ano</option>
+      <option value="1m">Primeiro ano (médio)</option>
+      <option value="2m">Segundo ano (médio)</option>
+      <option value="3m">Terceiro ano (médio)</option>
+      <option value="Outro">Outro</option>
+    </select>
+    
+    </div>
+
+    <label class="lab" for="periodo">Período escolar (ou trabalho):</label><br>
+    <div class="box">
+      <select class="sel" id="periodo" name="periodo" required>
+      <option value=""></option>
+      <option value = "manha">Nenhum</option>
+      <option value = "manha">Manhã</option>
+      <option value = "tarde">Tarde</option>
+      <option value = "noite">Noite</option>
+      <option value = "noite">Integral</option>
+    </select>
+    </div>
+    </div>
+  <div id=respons>
+  <spam class=title>Dados do(a) Responsável</spam><br><spam></spam><br><spam></spam><br>
+    <label class="lab" for="resposavel">Nome do pai/mãe/tutor ou responsável:</label><br>
+    <input class="inp" type="text" id="responsavel" name="responsavel" required><br>
+    <label class="lab" for="cpf2">CPF:</label><br>
+    <input class="inp" type="text" id="cpf2" name="cpf2" required><br>
+
+    <label class="lab" for="datadenascimento2">Data de nascimento:</label><br>
+    <input class="inp" type="date" id="datadenascimento2" name="datadenascimento2" required><br>
+
+    <label class="lab" for="endereco2">Endereço:</label><br>
+    <input class="inp" type="text" id="endereco2" name="endereco2" placeholder="Incluir nome do bairro" required><br>
+
+    <label class="lab" for="telefone2">Telefone (incluir DDD):</label><br>
+    <input class="inp" type="tel" id="telefone2" placeholder="Ex: 31 9 0000 0000" name="telefone2" required><br>
+
+    <label class="lab" for="email2">E-mail:</label><br>
+    <input class="inp" type="email" id="email2" name="email2" required><br>
+
+    <label class="lab" for="profissao">Profissão:</label><br>
+    <input class="inp" type="text" id="profissao" name="profissao" required><br>
+
+    <label class="lab" for="ocontato">Outro telefone de contato (familiar, vizinho etc.):</label><br>
+    <input class="inp" type="tel" id="ocontato" placeholder="Ex: 31 9 0000 0000" name="ocontato" required><br>
+  </div>
+  </div>
+  <div id="footer">
+    <button type="submit" id="go"> Cadastrar </button>
+</div >
+</form>
+</body>
+<script>var form = document.getElementById("myform");
+  function handleForm(event) { event.preventDefault(); } 
+  form.addEventListener('submit', handleForm);</script>

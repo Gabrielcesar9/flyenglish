@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    height: 100%;
+    background-color: #4cb6d6;
+  }
+  
+  .inp{
+    position:relative;
+    margin-left:11%;
+    width: 50%;
+    height: 35px;
+      padding-left: 15px;
+      border: none;
+      border-radius: 20px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,.2);
+  }
+  .lab{
+    position: relative;
+    margin-left: 8%;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 20px;
+    padding-left: 15px;
+    padding-bottom: 0;
+    color: rgba(255,255,255,.7);
+    display: block;
+  }
+  .title{
+    color: rgba(255,255,255,.7);
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 30px;
+    position: relative;
+    margin-left: 5%;
+  }
+  
+  #blocks{
+    margin-top: 3%;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1px;
+  }
+  .box{
+    margin-left: 15%;
+    padding-bottom: 2%;
+  }
+  .box select {
+    background-color: #4cb6d6;
+    color: white;
+    padding: 12px;
+    width: 250px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+  }
+  
+  .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255,255,255,.2);
+  }
+  
+  .box select option {
+    padding: 30px;
+  }
+  #dat1{
+    color:white;
+  }
+  #dat2{
+    color:white;
+  }
+  
+  #go{
+    position: relative;
+    left:80%;
+    font-family: "Asap", sans-serif;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 180px;
+    border: 0;
+    padding: 10px 0;
+    border-radius: 5px;
+    background-color:#c94e1d;
+    -webkit-transition: background-color 300ms;
+    -moz-transition: background-color 300ms;
+    transition: background-color 300ms;
+  }
+  #go:hover{
+    background-color: #1680a0;
+  }
+  #wait2{
+    position: relative;
+    left:70%;
+    font-weight: 700;
+    color: white;
+    font-family: sans-serif;
+  }
+  #footer{
+    height: 65px;
+  }

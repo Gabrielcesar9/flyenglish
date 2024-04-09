@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="css/form.css">
+<script>
+    function values(){
+      var nome = document.getElementById('name');
+      var cpf = document.getElementById('cpf');
+      var rg = document.getElementById('rg');
+      var datadenascimento = document.getElementById('datadenascimento');
+      var endereco = document.getElementById('endereco');
+      var telefonedoaluno = document.getElementById('telefonedoaluno');
+      var emaildoaluno = document.getElementById('emaildoaluno');
+      var serie = document.getElementById('serie');
+      var periodo = document.getElementById('periodo');
+      var responsavel = document.getElementById('responsavel');
+      var cpf2 = document.getElementById('cpf2');
+      var rg2 = document.getElementById('rg2');
+      var datadenascimento2 = document.getElementById('datadenascimento2');
+      var endereco2 = document.getElementById('endereco2');
+      var telefone2 = document.getElementById('telefone2');
+      var email2 = document.getElementById('email2');
+      var profissao = document.getElementById('profissao');
+      var ocontato = document.getElementById('ocontato');
+      data = [nome.value, cpf.value, rg.value, datadenascimento.value,endereco.value,telefonedoaluno.value,
+    emaildoaluno.value, serie.value, periodo.value, responsavel.value, cpf2.value, rg2.value, 
+    datadenascimento2.value, endereco2.value, telefone2.value, email2.value, profissao.value, ocontato.value];
+      return data
+    }
+    function Send(){
+      data = values();
+          fetch('https://objective-newton-1a197c.netlify.app/.netlify/functions/try',{
+      method: 'put',
+      body: data,
+    })
+  .then(response => {console.log(response);alert("Pré-matrícula realizada com sucesso");
+  window.location='https://objective-newton-1a197c.netlify.app/index'});
+  }
+  function check(out){
+      console.log("this is the out", out);
+      if(out=="0"){
+        alert("Este CPF já está cadastrado");
+        window.location='https://objective-newton-1a197c.netlify.app/index'
+      }else{Send()}
+    }
+    function Login(){
+      var cpf_ = document.getElementById('cpf').value;
+      var data = String(cpf_);
+      console.log('lenght', data.length, data, typeof(data));
+      if(data.length!=11){alert("CPF inválido");}
+      else{fetch('https://objective-newton-1a197c.netlify.app/.netlify/functions/login',{
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       },
+      method: 'POST',
+      body: [data],
+    })
+  .then(response => response.text()).then((data)=>{this.check(data)})}}
+</script>
+<body>
+<form id = "myform" onsubmit="Login()">
+<div class="area" >
+  <header> </header>
+  <div id=blocks>
+  <div id="aluno">
+  <spam class="title">Dados do(a) aluno(a)</spam><br><spam></spam><br><spam></spam><br>
+    <label class="lab" for="fname">Nome:</label><br>
+    <input class="inp" type="text" id="name" name="fname" required><br>
+
+    <label class="lab" for="cpf">CPF:</label><br>
+    <input class="inp" type="number" id="cpf" name="cpf" required><br>
+
+    <label class="lab" for="rg">RG:</label><br>
+    <input class="inp" type="number" id="rg" name="rg" required><br>
+
+    <label class="lab" for="datadenascimento">Data de nascimento:</label><br>
+    <input class="inp" type="date" id="datadenascimento" name="datadenascimento" required><br>
+
+    <label class="lab" for="endereco">Endereço:</label><br>
+    <input class="inp" type="text" id="endereco" name="endereco" required><br>
+
+    <label class="lab" for="telefonedoaluno">Telefone do aluno (incluir DDD):</label><br>
+    <input class="inp" type="tel" id="telefonedoaluno" placeholder="Ex: 31 9 0000 0000" name="telefonedoaluno" required><br>
+
+    <label class="lab" for="emaildoaluno">E-mail do aluno:</label><br>
+    <input class="inp" type="email" id="emaildoaluno" name="emaildoaluno" required><br>
+
+    <label class="lab" for="serie">Ano escolar em 2021:</label><br>
+    <div class="box">
+      <select class="sel" id="serie" name="serie" required>
+      <option value=""></option>
+      <option value="0">Jardim</option>
+      <option value="1">1º</option>
+      <option value="2">2º</option>
+      <option value="3">3º</option>
+      <option value="4">4º</option>
+      <option value="5">5º</option>
+      <option value="6">6º</option>
+      <option value="7">7º</option>
+      <option value="8">8º</option>
+      <option value="9">9º ano</option>
+      <option value="1m">Primeiro ano (médio)</option>
+      <option value="2m">Segundo ano (médio)</option>
+      <option value="3m">Terceiro ano (médio)</option>
+      <option value="Outro">Outro</option>
+    </select>
+    
+    </div>
+
+    <label class="lab" for="periodo">Período escolar:</label><br>
+    <div class="box">
+      <select class="sel" id="periodo" name="periodo" required>
+      <option value=""></option>
+      <option value = "manha">Manhã</option>
+      <option value = "tarde">Tarde</option>
+      <option value = "noite">Noite</option>
+    </select>
+    </div>
+    </div>
+  <div id=respons>
+  <spam class=title>Dados do(a) Responsável</spam><br><spam></spam><br><spam></spam><br>
+    <label class="lab" for="resposavel">Nome do pai/mãe/tutor ou responsável:</label><br>
+    <input class="inp" type="text" id="responsavel" name="responsavel" required><br>
+    <label class="lab" for="cpf2">CPF:</label><br>
+    <input class="inp" type="number" id="cpf2" name="cpf2" required><br>
+
+    <label class="lab" for="rg2">RG:</label><br>
+    <input class="inp" type="number" id="rg2" name="rg2" required><br>
+
+    <label class="lab" for="datadenascimento2">Data de nascimento:</label><br>
+    <input class="inp" type="date" id="datadenascimento2" name="datadenascimento2" required><br>
+
+    <label class="lab" for="endereco2">Endereço:</label><br>
+    <input class="inp" type="text" id="endereco2" name="endereco2" required><br>
+
+    <label class="lab" for="telefone2">Telefone (incluir DDD):</label><br>
+    <input class="inp" type="tel" id="telefone2" placeholder="Ex: 31 9 0000 0000" name="telefone2" required><br>
+
+    <label class="lab" for="email2">E-mail:</label><br>
+    <input class="inp" type="email" id="email2" name="email2" required><br>
+
+    <label class="lab" for="profissao">Profissão:</label><br>
+    <input class="inp" type="text" id="profissao" name="profissao" required><br>
+
+    <label class="lab" for="ocontato">Outro telefone de contato (familiar, vizinho etc.):</label><br>
+    <input class="inp" type="tel" id="ocontato" placeholder="Ex: 31 9 0000 0000" name="ocontato" required><br>
+  </div>
+  </div>
+  <div id="footer">
+    <button type="submit" id="go"> Cadastrar </button>
+    <spam id="wait2"></spam></div>
+</div >
+</form>
+</body>
+<script>var form = document.getElementById("myform");
+  function handleForm(event) { event.preventDefault(); } 
+  form.addEventListener('submit', handleForm);</script>

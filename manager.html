@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+  <form id="login" class="login">
+    <span id="text-center">Bem vindo!</span>
+      <!---<label for="cpf_">CPF:</label><br> -->
+      <input type='number' id='login' placeholder="flyenglish@email.com" required>
+      <input type='number' id='senha' placeholder="password" required>
+      
+    <button type="button" id="login_" onclick= Login()> Login</button>
+<div style="display: inline-block;">
+    <input type="radio" id="unidade1" value="ilicinea" name="unidade" required>
+    <label for="unidade1">Ilicínea</label>
+    <input type="radio" id="unidade2" value="guape" name="unidade" required>
+    <label for="unidade2">Guapé</label>
+</div>
+</form>
+</body>
+
+<table id="table">
+    <thead>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Nascimento</th>
+        <th>Endereço</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Série</th>
+        <th>Período</th>
+        <th>Responsável</th>
+        <th>CPF(resp.)</th>
+        <th>Nasc.(resp.)</th>
+        <th>Endereço</th>
+        <th>Tel.(resp.)</th>
+        <th>Email(resp.)</th>
+        <th>Profiss.(resp.)</th>
+        <th>Outro contato</th>
+    </thead>
+    <tbody id="tableBody">
+    </tbody>
+</table>
+<button id="goback" onclick=reload()>Go Back</button>
+
+<img id="logo" src="imgs/Fly+Slogan-01.png" width="200px" height="200px">
+</html>
+
+<script>
+    function reload(){
+        window.location.reload()
+    }
+    async function Login(){
+        document.getElementById('login_').innerHTML='AGUARDE...'
+        await fetch(`http://localhost:3000/managerlogin`, {
+        method:'POST',
+        headers:{
+        'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+            login:'analia09',
+            senha:'1234'})
+            
+    }).then(response =>{
+        if(!response.ok){
+        throw new Error('Network response was not ok')
+        }
+        return response.json()
+    }).then(response =>{
+        if(response.status = 200){
+            fetch(`http://localhost:3000/base`, {
+        method:'GET',
+        headers:{
+        'Content-Type': 'application/json',
+        },
+            
+    }).then(response =>{
+        if(!response.ok){
+        throw new Error('Network response was not ok')
+        }
+        return response.json()
+    }).then(response =>{
+        console.log(response.body)
+        const tableBody = document.getElementById('tableBody')
+        document.getElementById('login').style.display = 'none'
+        document.getElementById('goback').style.visibility = 'visible'
+        document.getElementById('table').style.visibility = 'visible'
+        var uni = document.querySelector('input[name="unidade"]:checked').value
+        console.log(uni)
+        
+        response.body.forEach(item =>{
+
+            if(item.unidade == uni){
+                const row = document.createElement('tr')
+
+            const nome = document.createElement('td')
+            const cpf = document.createElement('td')
+            const nasc = document.createElement('td')
+            const ender = document.createElement('td')
+            const tel = document.createElement('td')
+            const email = document.createElement('td')
+            const serie = document.createElement('td')
+            const periodo = document.createElement('td')
+            const respon = document.createElement('td')
+            const cpf2 = document.createElement('td')
+            const nasc2 = document.createElement('td')
+            const ender2 = document.createElement('td')
+            const tel2 = document.createElement('td')
+            const email2 = document.createElement('td')
+            const profss= document.createElement('td')
+            const oconta = document.createElement('td')
+
+            nome.textContent = item.nome
+            cpf.textContent = item.cpf
+            nasc.textContent = item.datadenascimento
+            ender.textContent = item.endereco
+            tel.textContent = item.telefonedoaluno
+            email.textContent = item.emaildoaluno
+            serie.textContent = item.serie
+            periodo.textContent = item.periodo
+            respon.textContent = item.responsavel
+            cpf2.textContent = item.cpf2
+            nasc2.textContent = item.datadenascimento2
+            ender2.textContent = item.endereco2
+            tel2.textContent = item.telefone2
+            email2.textContent = item.email2
+            profss.textContent = item.profissao
+            oconta.textContent = item.ocontato
+
+
+            row.appendChild(nome)
+            row.appendChild(cpf)
+            row.appendChild(nasc)
+            row.appendChild(ender)
+            row.appendChild(tel)
+            row.appendChild(email)
+            row.appendChild(serie)
+            row.appendChild(periodo)
+            row.appendChild(respon)
+            row.appendChild(cpf2)
+            row.appendChild(nasc2)
+            row.appendChild(ender2)
+            row.appendChild(tel2)
+            row.appendChild(tel2)
+            row.appendChild(email2)
+            row.appendChild(profss)
+            row.appendChild(oconta)
+
+            tableBody.appendChild(row)
+            }
+            
+            
+        })
+        
+    })
+}})
+    }
+</script>
