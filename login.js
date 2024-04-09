@@ -1,6 +1,5 @@
 function checkCPF(strCPF){
-  //const baseurl = 'http://localhost:3000'
-  const baseurl = 'api-register-students.vercel.app'
+  
   var Soma;
   var Resto;
   Soma = 0;
@@ -21,6 +20,8 @@ function checkCPF(strCPF){
     return true;
   }
 async function Login(){
+  //const baseurl = 'http://localhost:3000'
+  const baseurl = 'api-register-students.vercel.app'
   cpf = document.getElementById('cpf_').value;
   document.getElementById('login_').innerHTML = 'AGUARDE...'
   if(checkCPF(cpf)){
