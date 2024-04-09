@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="css/form.css">
 <script>
+  //const baseurl = 'http://localhost:3000'
+    const baseurl = 'api-register-students.vercel.app'
     function values(){
       var unidade = document.getElementById('unidade').value;
       var nome = document.getElementById('name').value;
@@ -41,7 +43,7 @@
     }
   async function register(){
     console.log('register is being made')
-    const reg = await fetch('http://localhost:3000/matriculate', {
+    const reg = await fetch(`${baseurl}/matriculate`, {
       method:'POST',
       headers:{
           'Content-type':'application/json',

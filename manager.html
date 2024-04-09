@@ -48,12 +48,14 @@
 </html>
 
 <script>
+    //const baseurl = 'http://localhost:3000'
+    const baseurl = 'api-register-students.vercel.app'
     function reload(){
         window.location.reload()
     }
     async function Login(){
         document.getElementById('login_').innerHTML='AGUARDE...'
-        await fetch(`http://localhost:3000/managerlogin`, {
+        await fetch(`${baseurl}/managerlogin`, {
         method:'POST',
         headers:{
         'Content-Type': 'application/json',
@@ -69,7 +71,7 @@
         return response.json()
     }).then(response =>{
         if(response.status = 200){
-            fetch(`http://localhost:3000/base`, {
+            fetch(`${baseurl}/base`, {
         method:'GET',
         headers:{
         'Content-Type': 'application/json',

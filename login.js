@@ -1,4 +1,6 @@
 function checkCPF(strCPF){
+  //const baseurl = 'http://localhost:3000'
+  const baseurl = 'api-register-students.vercel.app'
   var Soma;
   var Resto;
   Soma = 0;
@@ -22,7 +24,7 @@ async function Login(){
   cpf = document.getElementById('cpf_').value;
   document.getElementById('login_').innerHTML = 'AGUARDE...'
   if(checkCPF(cpf)){
-    await fetch(`http://localhost:3000/check?payload=${cpf}`, {
+    await fetch(`${baseurl}/check?payload=${cpf}`, {
     method:'GET',
     headers:{
       'Content-Type': 'application/json',
