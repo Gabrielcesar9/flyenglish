@@ -57,8 +57,10 @@
         document.getElementById('login_').innerHTML='AGUARDE...'
         await fetch(`${baseurl}/managerlogin`, {
         method:'POST',
-        headers:{
-        'Content-Type': 'application/json',
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
         body:JSON.stringify({
             login:document.getElementById('login').value,//'analia09',
