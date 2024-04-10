@@ -61,8 +61,8 @@
         'Content-Type': 'application/json',
         },
         body:JSON.stringify({
-            login:'analia09',
-            senha:'1234'})
+            login:document.getElementById('login').value,//'analia09',
+            senha:document.getElementById('senha').value})//'1234'})
             
     }).then(response =>{
         if(!response.ok){
