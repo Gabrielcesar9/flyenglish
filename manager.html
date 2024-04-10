@@ -56,7 +56,6 @@
     async function Login(){
         document.getElementById('login_').innerHTML='AGUARDE...'
         await fetch(`${baseurl}/managerlogin`, {
-        headers:{'Access-Control-Allow-Origin':'*'},
         method:'POST',
         body:JSON.stringify({
             login:document.getElementById('loginmanager').value,//'analia09',
